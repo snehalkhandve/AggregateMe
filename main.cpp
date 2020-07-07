@@ -1,48 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    ifstream fin1, fin2;
+int main(int argc , char* argv[]) {
+    ifstream fin;
     ofstream fout;
-    string file_name1 , file_name2 , file_name3;
-    cout<<"\n Enter First File Name with Extension '.txt'    :   ";
-    cin >>  file_name1;
-    cout<<"\n Enter Second File Name with Extension '.txt'    :   ";
-    cin >> file_name2;
-    cout<<"\n Enter Aggregate File Name with Extension '.txt'    :   ";
-    cin >> file_name3;
-
-    fin1.open(file_name1.c_str());
-    fin2.open(file_name2.c_str());
-
-    if(!fin1 || !fin2)
-    {
-      cout<<"\n Invalid File Name. \n There is no such File or Directory ...";
-      exit(EXIT_FAILURE);
+    if(argc < 2) {
+        cout << "Invalid command!\n";
+        return 0;
     }
+    string operation = argv[1];
+    if((operation.compare("add")) == 0) {
+        string fname = argv[2];
+        fin.open(argv[2]);
+        if(!fin) {
+            cout << "\n Invalid File Name. \n There is no such File or Directory ...";
+            exit(EXIT_FAILURE);
+        }
+        fout.open("aggregator.txt" , ios::app);
+        if(!fout) {
+            cout <<"\n Invalid File Name. \n There is no such File or Directory ...";
+            exit(EXIT_FAILURE);
+        }
+        string text;
+        fout << "//" << "\n";
+        fout << argv[2] << "\n";
+        while(getline(fin, text)) {
+             fout << text;
+        }
+        fout << "\n\n";
+        remove(argv[2]);
+        cout << "File added successfully!!!\n";
+    }
+    else if((operation.compare("copy")) == 0) {
 
-    fout.open(file_name3);
+    }
+    else if((operation.compare("cut")) == 0) {
+
+    }
+    else if((operation.compare("list")) == 0) {
+        fin.open("aggregator.txt");
+        string file_start = "//" , text;
+        while(getline(fin, text)) {
+            if(text.compare(file_start) == 0) {
+                getline(fin , text);
+                cout << text << "\n";
+            }
+        }
+    }
     
-    if(!fout)
-    {
-      cout<<"\n Invalid File Name. \n There is no such File or Directory ...";
-      exit(EXIT_FAILURE);
-    }
-
-    string text;
-    
-    while (getline (fin1, text)) {
-         fout<<text;
-    }
-    fout << "\n";
-    while (getline (fin2, text)) {
-         fout<<text;
-    }
-     
-    cout<<"\n Two Files have been Merged into "<<file_name3<<".\n Merged Successfully...!!!\n";
-    
-    fin1.close();
-    fin2.close();
+    fin.close();
     fout.close();
     
     return 0;
