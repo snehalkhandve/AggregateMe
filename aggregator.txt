@@ -1,12 +1,33 @@
 //
-file3.txt
-This is file3.
-
-//
 file1.txt
+
+Content:
 This is file1.
 
+Metadata:
+This file is added on time: Thu Jul 09 12:59:25 2020
+Total lines: 1
+Size of the file is 16 bytes
+
 //
-file4.txt
-This is file4.
+file2.txt
+
+Content:
+This is file2.
+
+Metadata:
+This file is added on time: Thu Jul 09 12:59:30 2020
+Total lines: 1
+Size of the file is 16 bytes
+
+//
+file3.txt
+
+Content:
+This is file3.
+
+Metadata:
+This file is added on time: Thu Jul 09 12:59:35 2020
+Total lines: 1
+Size of the file is 16 bytes
 

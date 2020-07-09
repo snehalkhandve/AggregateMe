@@ -1,11 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+/**
+ * To avoid change of file name in multiple places in code, it is stored in a variable 
+*/
 string main_file = "aggregator.txt";
+
 ifstream fin;
 ofstream fout;
 
 void add(string file_name) {
+    /**
+     * To keep track of total lines in the file to be added
+    */
+    long long int total_lines = 0;
+
     fin.open(file_name);
     if(!fin) {
         cout << "\n Invalid File Name. \n There is no such File or Directory ...";
@@ -13,14 +21,42 @@ void add(string file_name) {
     }
     fout.open(main_file , ios::app);
     if(!fout) {
-        cout <<"\n Invalid File Name. \n There is no such File or Directory ...";
+        cout <<"\n Error while opening "<<main_file;
         exit(EXIT_FAILURE);
     }
     string text;
+    /**
+     * '//' is added as a sign indicating start of a new file in aggregator.txt
+    */
     fout << "//" << "\n";
-    fout << file_name << "\n";
+    fout << file_name << "\n\nContent:\n";
+
+    fin.seekg(0, ios::end);
+    long long int file_size = fin.tellg();    
+    fin.seekg(0, ios::beg);
+
     while(getline(fin , text))
-         fout << text;
+    {
+        fout << text;
+        total_lines++;
+    }
+    fout<<"\n\nMetadata:\n";
+
+    /**
+     * current date/time based on current system
+     */ 
+    time_t now = time(0);
+
+    /**
+     * convert now to string form
+     */
+    char* dt = ctime(&now);
+
+    
+
+    fout << "This file is added on time: " << dt;
+    fout << "Total lines: "<< total_lines<<"\n";
+    fout<<"Size of the file is"<<" "<< file_size<<" "<<"bytes";
     fout << "\n\n";
     remove(file_name.c_str());
     cout << "File added successfully!!!\n";
@@ -39,7 +75,7 @@ void copy(string old_filename) {
 
     fin.open(main_file , ios::app);
     if(!fout) {
-        cout <<"\n Invalid File Name. \n There is no such File or Directory ...";
+        cout <<"\n Error while opening "<<main_file;
         exit(EXIT_FAILURE);
     }
 
@@ -74,7 +110,7 @@ void cut(string old_filename) {
     }
     fin.open(main_file , ios::app);
     if(!fout) {
-        cout <<"\n Invalid File Name. \n There is no such File or Directory ...";
+        cout <<"\n Error while opening "<<main_file;
         exit(EXIT_FAILURE);
     }
 
@@ -105,7 +141,7 @@ void cut(string old_filename) {
     fout.open(main_file);
 
     if(!fout) {
-        cout << "\n Invalid File Name. \n There is no such File or Directory ...";
+        cout <<"\n Error while opening "<<main_file;
         exit(EXIT_FAILURE);
     }
     else {
@@ -121,6 +157,10 @@ void cut(string old_filename) {
 
 void display_list() {
     fin.open(main_file);
+    if(!fin) {
+        cout <<"\n Error while opening "<<main_file;
+        exit(EXIT_FAILURE);
+    }
     string file_start = "//" , text;
     while(getline(fin , text)) {
         if(text.compare(file_start) == 0) {
