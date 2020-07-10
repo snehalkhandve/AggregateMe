@@ -1,1 +1,1 @@
-Content:This is file1.Metadata:This file is added on time: Fri Jul 10 14:46:10 2020Total lines: 1Size of the file is 16 bytes
+This is file1.

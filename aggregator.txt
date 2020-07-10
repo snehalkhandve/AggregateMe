@@ -1,13 +1,14 @@
 //
-file1.txt
+file3.txt
 
 Content:
-This is file1.
+This is file3.
 
 Metadata:
-This file is added on time: Thu Jul 09 12:59:25 2020
+This file is added on time : Fri Jul 10 16:55:59 2020
+Location of the file is /home/apurva/Desktop/AggregateMe/file3.txt
 Total lines: 1
-Size of the file is 16 bytes
+Size of the file is 15 bytes
 
 //
 file2.txt
@@ -16,18 +17,20 @@ Content:
 This is file2.
 
 Metadata:
-This file is added on time: Thu Jul 09 12:59:30 2020
+This file is added on time : Fri Jul 10 16:56:04 2020
+Location of the file is /home/apurva/Desktop/AggregateMe/file2.txt
 Total lines: 1
-Size of the file is 16 bytes
+Size of the file is 15 bytes
 
 //
-file3.txt
+file1.txt
 
 Content:
-This is file3.
+This is file1.
 
 Metadata:
-This file is added on time: Thu Jul 09 12:59:35 2020
+This file is added on time : Fri Jul 10 16:56:08 2020
+Location of the file is /home/apurva/Desktop/AggregateMe/file1.txt
 Total lines: 1
-Size of the file is 16 bytes
+Size of the file is 15 bytes
 

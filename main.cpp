@@ -46,11 +46,12 @@ void add(string file_name) {
     //convert now to string form
     char* dt = ctime(&now);
 
-    
+    string file_path = realpath(file_name.c_str() , NULL);
 
-    fout << "This file is added on time: " << dt;
-    fout << "Total lines: "<< total_lines<<"\n";
-    fout <<"Size of the file is"<<" "<< file_size<<" "<<"bytes";
+    fout << "This file is added on time : " << dt;
+    fout << "Location of the file is " << file_path << "\n";
+    fout << "Total lines: " << total_lines << "\n";
+    fout << "Size of the file is " << file_size << " " << "bytes";
     fout << "\n\n";
     remove(file_name.c_str());
     cout << "File added successfully!!!\n";
@@ -109,7 +110,7 @@ void copy(string old_filename) {
 
 void cut(string old_filename) {
 
-    //This new file helps to restore deleted contents(Recycle Bin for aggregator)
+    //This new file helps to store deleted contents(Recycle Bin for aggregator)
     string new_filename = "cut_" + old_filename;
 
     //used to restore contents of aggregator.txt 
@@ -137,13 +138,23 @@ void cut(string old_filename) {
             buffer.pop_back();
             buffer.pop_back();
             file_found = true;
+
+            getline(fin,text);
+
+            while(getline(fin,text)) {
+                if(text.compare("Content:") == 0)
+                    continue;
+                else if(text.compare("Metadata:") == 0)
+                    break;
+                else
+                    fout << text;
+            }
+
             while (getline(fin,text)) {
                 if(text.compare("//") == 0) {
                     buffer.push_back(text);
                     break;
                 }
-                else
-                    fout << text;
             }
              
         }
