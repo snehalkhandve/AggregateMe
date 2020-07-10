@@ -75,18 +75,27 @@ void copy(string old_filename) {
 
     string text;
     
-    //To handle test case : copy operation should not be performed before add operation 
+    //To handle test case : copy operation cannot be performed before add operation 
     bool file_found = false;
     
     while(getline(fin, text)) {
-        if((text.compare(old_filename) == 0) && !file_found) {
-            file_found = true;
-            while (getline(fin,text)) {
-                if(text.compare("//") == 0)
-                    break;
-                else
-                    fout << text;
-            } 
+        if(text.compare("//") == 0)
+        {
+            getline(fin,text);
+            if((text.compare(old_filename) == 0) && !file_found) {
+                file_found = true;
+            
+                //To exclude initial word 'Content'
+                getline(fin,text);
+                getline(fin,text);
+              
+                while (getline(fin,text)) {
+                    if(text.compare("Metadata:") == 0)
+                        break;
+                    else
+                        fout << text;
+                } 
+            }
         }
     }
     fin.close();
@@ -189,6 +198,7 @@ int main(int argc , char* argv[]) {
 
     string operation = argv[1];
     
+    //To modularize the code, operations are performed in separate functions and then called using if-else 
     if((operation.compare("add")) == 0)
         add(argv[2]);
     
