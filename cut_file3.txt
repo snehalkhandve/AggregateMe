@@ -1,1 +1,1 @@
-This is file3.
+This is the third file of Aggregate Me assignment.

@@ -14,7 +14,7 @@ void add(string file_name) {
 
     fin.open(file_name);
     if(!fin) {
-        cout << "\n Invalid File Name. \n There is no such File or Directory ...";
+        cout << "\n Invalid File Name. \n There is no such File or Directory!!!\n";
         exit(EXIT_FAILURE);
     }
     fout.open(main_file , ios::app);
@@ -64,7 +64,7 @@ void copy(string old_filename) {
     
     fout.open(new_filename);
     if(!fin) {
-        cout << "\n Invalid File Name. \n There is no such File or Directory ...";
+        cout << "\n Invalid File Name. \n There is no such File or Directory!!!\n";
         exit(EXIT_FAILURE);
     }
 
@@ -102,8 +102,10 @@ void copy(string old_filename) {
     fin.close();
     fout.close();
     
-    if(!file_found)
-        cout << "The given file is never copied into aggregator.txt\n";
+    if(!file_found) {
+        cout << "The given file is never copied into aggregator.txt!!!\n";
+        exit(EXIT_FAILURE);
+    }
 
     cout << "File copied successfully!!!\n";
 }
@@ -118,7 +120,7 @@ void cut(string old_filename) {
     
     fout.open(new_filename);
     if(!fin) {
-        cout << "\n Invalid File Name. \n There is no such File or Directory ...";
+        cout << "\n Invalid File Name. \n There is no such File or Directory!!!\n";
         exit(EXIT_FAILURE);
     }
     fin.open(main_file , ios::app);
@@ -177,7 +179,8 @@ void cut(string old_filename) {
     }
     
     if(!file_found) {
-        cout << "The given file is never copied into aggregator.txt\n";
+        cout << "The given file is never copied into aggregator.txt!!!\n";
+        exit(EXIT_FAILURE);
     }
 
     cout << "File removed successfully!!!\n";
@@ -203,7 +206,8 @@ int main(int argc , char* argv[]) {
     
     //To ensure proper command-line argument is provided 
     if(argc < 2) {
-        cout << "Invalid command!\n";
+        cout << "Invalid!!!\n";
+        cout << "No command-line argument provided!!!\n";
         return 0;
     }
 
